@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout/Layout";
+import styles from "../country/country.module.css";
 
 const Country = ({ country }) => {
     return (<Layout title={country.name}>

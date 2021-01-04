@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Link from "next/Link";
+import Link from "next/link";
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@material-ui/icons';
 import styles from '../CountryTable/CountryTable.module.css'
 

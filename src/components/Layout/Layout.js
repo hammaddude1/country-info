@@ -1,9 +1,36 @@
+import { useState, useEffect } from "react";
 import Head from "next/Head";
 import styles from "../Layout/Layout.module.css";
+import { Brightness6Rounded } from "@material-ui/icons";
 
 export default function Layout({ children, title = "Countries Info" }) {
-    return (
+    const [theme, setTheme] = useState("light");
 
+    useEffect(() => {
+
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+
+        setTheme(localStorage.getItem("theme"));
+
+    }, [])
+
+
+    const saveTheme = (theme) => {
+        setTheme(theme);
+        localStorage.setItem("theme", theme);
+        document.documentElement.setAttribute("data-theme", theme);
+    }
+
+    const changeTheme = () => {
+        if (theme === "light") {
+            saveTheme("dark")
+        }
+        else {
+            saveTheme("light");
+        }
+    }
+
+    return (
         <div className={styles.container}>
             <Head>
                 <title>{title}</title>
@@ -17,6 +44,9 @@ export default function Layout({ children, title = "Countries Info" }) {
                     <rect y="9.86725" width="14.6667" height="4.4" rx="2" fill="#21B6B7" />
                     <rect y="4" width="7.33333" height="4.4" rx="2" fill="#21B6B7" />
                 </svg>
+                <button className={styles.brightness_button} onClick={changeTheme}>
+                    <Brightness6Rounded />
+                </button>
             </header>
 
             <main className={styles.main}>
