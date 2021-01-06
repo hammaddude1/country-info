@@ -1,11 +1,17 @@
 import { useState } from "react";
-import Head from 'next/head'
 import CountryTable from '../components/CountryTable/CountryTable'
 import Layout from '../components/Layout/Layout'
 import SearchInput from '../components/SearchInput/SearchInput'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Index.module.css'
 
 export default function Home({ countries }) {
+
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  }
+  else {
+    console.log = console.warn = console.error = () => { };
+  }
+
   const [keyword, setKeyword] = useState("");
 
   const filteredCountries = countries.filter((country) =>
